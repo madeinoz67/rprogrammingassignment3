@@ -2,6 +2,9 @@
 ##  Stephen Eaton <seaton@strobotics.com.au>
 ##
 
+## external libraries
+library(plyr)
+
 ## Setup our environment
 setwd("~/Documents/Coursera/RProgramming/assignment3")
 
@@ -34,11 +37,12 @@ best <- function(state, outcome) {
         ## required number of columns and rename to something legible
         subset_raw_df <- raw_df[, c(2,  7, valid_outcomes[outcome])]
         names(subset_raw_df) <- c("hospital", "state", "outcome")
-        
+        subset_raw_df <- arrange(subset_raw_df, state, outcome, hospital)
+
         ## remove any rows with invalid data (NA)
-        subset_clean_df <- na.omit(subset_raw_df)
-        subset_clean_df
-        ## Return hospital name in that state with lowest 30-day death rate
-        
+        clean_df <- na.omit(subset_raw_df)
+
+        state_result <- clean_df[clean_df$state==state,]
+        state_result[1,]
         
 }
