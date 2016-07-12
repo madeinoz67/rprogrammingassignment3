@@ -1,2 +1,2 @@
-# rprogrammingassignment3
-Coursera r-programming Assignment 3
+# R-Programming Assignment 3
+Coursera R-Programming Assignment 3
