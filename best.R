@@ -43,6 +43,6 @@ best <- function(state, outcome) {
         clean_df <- na.omit(subset_raw_df)
 
         state_result <- clean_df[clean_df$state==state,]
-        state_result[1,]
+        state_result[1,1]
         
 }
