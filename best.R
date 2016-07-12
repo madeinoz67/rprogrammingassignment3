@@ -13,10 +13,32 @@ setwd("~/Documents/Coursera/RProgramming/assignment3")
 best <- function(state, outcome) {
         
         ## Read outcome data
-        dat_outcome <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
+        raw_df <- read.csv("outcome-of-care-measures.csv", 
+                                na.strings= "Not Available",
+                                stringsAsFactors=FALSE)
         
+        valid_outcomes <- c("heart attack" = 11, 
+                            "heart failure" = 17, 
+                            "pneumonia" = 23 ) 
+
         ## Check that state and outcome are valid
+        if(!is.element(state, raw_df$State)) {
+                stop("invalid state")
+        }
+
+        if(!is.element(outcome, names(valid_outcomes))) {
+                stop("invalid outcome")
+        }
         
+        ## create a subset of main data with only the 
+        ## required number of columns and rename to something legible
+        subset_raw_df <- raw_df[, c(2,  7, valid_outcomes[outcome])]
+        names(subset_raw_df) <- c("hospital", "state", "outcome")
+        
+        ## remove any rows with invalid data (NA)
+        subset_clean_df <- na.omit(subset_raw_df)
+        subset_clean_df
         ## Return hospital name in that state with lowest 30-day death rate
+        
         
 }

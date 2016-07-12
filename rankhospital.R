@@ -3,7 +3,7 @@
 ##
 
 ## Setup our environment
-setwd("~/Documents/Coursera/RProgramming/assignment3")
+#setwd("~/Documents/Coursera/RProgramming/assignment3")
 
 ##  function:   rankhospital
 ##   purpose:   Checks that state and outcome are valid
@@ -12,7 +12,24 @@ setwd("~/Documents/Coursera/RProgramming/assignment3")
 ## assumptions: data file "outcome-of-care-measures.csv" in working Directory
 rankhospital <- function(state, outcome, num = "best") {
         ## Read outcome data
+        ## Read outcome data
+        raw_df <- read.csv("outcome-of-care-measures.csv", 
+                                na.strings= "Not Available",
+                                stringsAsFactors=FALSE)
         
-        ## Checks that state and outcome are valid
+        valid_outcomes <- c("heart attack" = 11, 
+                            "heart failure" = 17, 
+                            "pneumonia" = 23 ) 
+        
+        ## Check that state and outcome are valid
+        if(!is.element(state, raw_df$State)) {
+                stop("invalid state")
+        }
+
+        if(!is.element(outcome, names(valid_outcomes))) {
+                stop("invalid outcome")
+        }
+        
+
 
 }
