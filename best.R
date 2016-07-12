@@ -16,7 +16,7 @@ setwd("~/Documents/Coursera/RProgramming/assignment3")
 best <- function(state, outcome) {
         
         ## Read outcome data
-        raw_df <- read.csv("outcome-of-care-measures.csv", 
+        df <- read.csv("outcome-of-care-measures.csv", 
                                 na.strings= "Not Available",
                                 stringsAsFactors=FALSE)
         
@@ -25,7 +25,7 @@ best <- function(state, outcome) {
                             "pneumonia" = 23 ) 
 
         ## Check that state and outcome are valid
-        if(!is.element(state, raw_df$State)) {
+        if(!is.element(state, df$State)) {
                 stop("invalid state")
         }
 
@@ -35,14 +35,15 @@ best <- function(state, outcome) {
         
         ## create a subset of main data with only the 
         ## required number of columns and rename to something legible
-        subset_raw_df <- raw_df[, c(2,  7, valid_outcomes[outcome])]
-        names(subset_raw_df) <- c("hospital", "state", "outcome")
-        subset_raw_df <- arrange(subset_raw_df, state, outcome, hospital)
+        df <- df[, c(2,  7, valid_outcomes[outcome])]
+        names(df) <- c("hospital", "state", "outcome")
+        df <- arrange(df, state, outcome, hospital)
 
         ## remove any rows with invalid data (NA)
-        clean_df <- na.omit(subset_raw_df)
+        df <- na.omit(df)
 
-        state_result <- clean_df[clean_df$state==state,]
-        state_result[1,1]
+        ## Return Result for state
+        df <- df[df$state==state,]
+        df[1,1]
         
 }
