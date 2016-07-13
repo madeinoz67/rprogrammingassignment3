@@ -1,6 +1,9 @@
-## R-Programming Week 3 Assignment 3  part 
+## R-Programming Week 3 Assignment 3  part 3
 ##  Stephen Eaton <seaton@strobotics.com.au>
 ##
+
+## external libraries
+library(plyr)
 
 ## Setup our environment
 #setwd("~/Documents/Coursera/RProgramming/assignment3")

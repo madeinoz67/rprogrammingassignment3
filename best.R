@@ -1,4 +1,4 @@
-## R-Programming Week 3 Assignment 3
+## R-Programming Week 3 Assignment 3 part 2
 ##  Stephen Eaton <seaton@strobotics.com.au>
 ##
 
